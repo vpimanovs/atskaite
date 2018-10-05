@@ -1,0 +1,123 @@
+type Campaign @pgTable(name: "campaign") {
+  id: Int! @unique
+  description: String
+  promotions: [Promotion!]!
+  trackingcode: String
+}
+
+type Databasechangelog @pgTable(name: "databasechangelog") {
+  author: String!
+  comments: String
+  contexts: String
+  dateexecuted: DateTime!
+  deployment_id: String
+  description: String
+  exectype: String!
+  filename: String!
+  id: Int! @unique
+  labels: String
+  liquibase: String
+  md5sum: String
+  orderexecuted: Int!
+  tag: String
+}
+
+type Databasechangeloglock @pgTable(name: "databasechangeloglock") {
+  id: Int! @unique
+  locked: Boolean!
+  lockedby: String
+  lockgranted: DateTime
+}
+
+type Entrypoint @pgTable(name: "entrypoint") {
+  id: Int! @unique
+  promotions: [Promotion!]!
+  url: String
+}
+
+type Offer @pgTable(name: "offer") {
+  id: Int! @unique
+  desription: String
+  offeritems: [Offeritem!]!
+  pricezoneid: Pricezone @pgRelation(column: "pricezoneid")
+  productid: String!
+  promotionid: Promotion @pgRelation(column: "promotionid")
+}
+
+type Offercategory @pgTable(name: "offercategory") {
+  id: Int! @unique
+  code: String
+  description: String
+  offeritems: [Offeritem!]!
+}
+
+type Offeritem @pgTable(name: "offeritem") {
+  id: Int! @unique
+  autorenewflag: Boolean!
+  offer: Offer @pgRelation(column: "offer_id")
+  offercategory: Offercategory @pgRelation(column: "offercategory_id")
+  offerterm: Offerterm @pgRelation(column: "offerterm_id")
+  paymenttype: Paymenttype @pgRelation(column: "paymenttype_id")
+  premia: Premia @pgRelation(column: "premia_id")
+  price: Float
+  product: Product @pgRelation(column: "product_id")
+}
+
+type Offerterm @pgTable(name: "offerterm") {
+  id: Int! @unique
+  description: String
+  durationweeks: Int
+  offeritems: [Offeritem!]!
+}
+
+type Paymenttype @pgTable(name: "paymenttype") {
+  id: Int! @unique
+  code: String
+  description: String
+  offeritems: [Offeritem!]!
+}
+
+type Premia @pgTable(name: "premia") {
+  id: Int! @unique
+  code: String
+  description: String
+  offeritems: [Offeritem!]!
+}
+
+type Pricezone @pgTable(name: "pricezone") {
+  id: Int! @unique
+  country: String
+  currency: String
+  offers: [Offer!]!
+}
+
+type Product @pgTable(name: "product") {
+  id: Int! @unique
+  description: String
+  offeritems: [Offeritem!]!
+  productid: String
+}
+
+type Promotion @pgTable(name: "promotion") {
+  id: Int! @unique
+  campaignid: Campaign @pgRelation(column: "campaignid")
+  description: String
+  enddate: DateTime
+  entrypointid: Entrypoint @pgRelation(column: "entrypointid")
+  offers: [Offer!]!
+  promocode: String
+  startdate: DateTime
+}
+
+type Uxjourney @pgTable(name: "uxjourney") {
+  id: Int! @unique
+  code: String
+  desription: String
+  uxjourneyelementid: Uxjourneyelement @pgRelation(column: "uxjourneyelementid")
+}
+
+type Uxjourneyelement @pgTable(name: "uxjourneyelement") {
+  id: Int! @unique
+  description: String
+  uxjourneys: [Uxjourney!]!
+}
