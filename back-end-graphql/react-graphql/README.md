@@ -20,9 +20,7 @@ COMMENTS
 1. Data transferring between postgraphile server and application could be blocked by CORS, so to avoid this is recommended to use Firefox, with CORSe extensions.
 2. From the beginning, no data will be displayed, so if you want to see some data, you should send some mutations from graphql playground. (localhost:5000/graphiql)
 2.1. Mutations and Queryes examples you can find in (GRAPQL_documents) folder/examples.
-
-
-=========================================
+----------------------------------------
 ADDITIONAL INFO (in dev mode)
 =========================================
 Ho to connect Prisma to your PostgreSQL?
