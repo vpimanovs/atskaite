@@ -46,5 +46,6 @@ Run Prisma
 4. prisma deploy
 How to connect to Prisma Playground?
 5. http://localhost:4466
+
 ========================================
 Remains only build GRAPQL server and connect with prisma endpoint.
