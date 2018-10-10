@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import Campaigns from './Campaigns';
 import Offers from './Offers';
 import Navigation from './Nav';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
+import Campaigns from './Campaigns';
 
 
 const client = new ApolloClient({

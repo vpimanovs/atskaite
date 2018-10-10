@@ -23,10 +23,11 @@ const Campaigns = () => (
             
             console.log(data)
             return data.allCampaigns.nodes.map((currentCampaign) => (
-                <Campaign campaign={currentCampaign} />
+                <Campaign campaign={currentCampaign} />    
             ));
+    
         }}
     </Query>
 );
 
-export default Campaigns;
+export default Campaigns
